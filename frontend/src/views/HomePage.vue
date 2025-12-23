@@ -8,28 +8,17 @@ const collageImages = ref([]);
 
 const loadImages = async () => {
   try {
-    // Try to load images from the public/images folder
-    const imageFiles = [
-      '/images/coffee1.jpeg',
-      '/images/coffee2.jpeg',
-      '/images/coffee3.jpeg',
-      '/images/coffee4.jpeg'
-    ];
-    
-    // You can add more images if available
-    collageImages.value = imageFiles.map((path, index) => ({
-      id: index + 1,
-      url: path,
-      alt: `Coffee gathering ${index + 1}`
-    }));
+    // Try to load single image from the public/images folder
+    collageImages.value = [{
+      id: 1,
+      url: '/images/coffee1.jpeg',
+      alt: 'Coffee gathering with Bishop'
+    }];
   } catch (error) {
     console.error('Error loading images:', error);
-    // Fallback to placeholder images if local images fail
+    // Fallback to placeholder image if local image fails
     collageImages.value = [
-      { id: 1, url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400', alt: 'Coffee gathering 1' },
-      { id: 2, url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400', alt: 'Coffee gathering 2' },
-      { id: 3, url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400', alt: 'Coffee gathering 3' },
-      { id: 4, url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400', alt: 'Coffee gathering 4' }
+      { id: 1, url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800', alt: 'Coffee gathering with Bishop' }
     ];
   }
 };
@@ -100,14 +89,13 @@ const scrollToSection = (sectionId) => {
         </div>
         
         <div class="hero-image-container">
-          <div class="collage-grid">
-            <div 
-              v-for="(image, index) in collageImages" 
-              :key="image.id"
-              :class="`collage-item collage-item-${index + 1}`"
+          <div class="single-image-wrapper">
+            <img 
+              v-if="collageImages.length > 0"
+              :src="collageImages[0].url" 
+              :alt="collageImages[0].alt" 
+              class="hero-image"
             >
-              <img :src="image.url" :alt="image.alt" class="collage-img">
-            </div>
           </div>
         </div>
       </div>
@@ -372,7 +360,7 @@ const scrollToSection = (sectionId) => {
   transform: translateY(-0.25rem);
 }
 
-/* Collage */
+/* Hero Image */
 .hero-image-container {
   position: relative;
   width: 100%;
@@ -380,51 +368,25 @@ const scrollToSection = (sectionId) => {
   margin: 0 auto;
 }
 
-.collage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
+.single-image-wrapper {
+  position: relative;
+  width: 100%;
   height: 500px;
-}
-
-.collage-item {
+  border-radius: 1.5rem;
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-.collage-item:hover {
-  transform: scale(1.05);
-  z-index: 10;
-}
-
-.collage-item-1 {
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
-}
-
-.collage-item-2 {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-}
-
-.collage-item-3 {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
-}
-
-.collage-item-4 {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-}
-
-.collage-img {
+.hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.05);
 }
 
 /* About Section */
@@ -440,7 +402,7 @@ const scrollToSection = (sectionId) => {
 
 .about-content-wrapper {
   background: linear-gradient(to bottom right, #fef3c7, #fed7aa);
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
@@ -457,9 +419,9 @@ const scrollToSection = (sectionId) => {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 }
 
