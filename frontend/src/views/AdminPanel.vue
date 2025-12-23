@@ -144,17 +144,6 @@ onMounted(() => {
             </div>
           </div>
         </div>
-
-        <div class="stat-card">
-          <div class="stat-content">
-            <div class="stat-info">
-              <p class="stat-label">With Questions</p>
-              <p class="stat-value">
-                {{ registrationsWithQuestions.length }}
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Actions -->
@@ -456,7 +445,8 @@ onMounted(() => {
 
 @media (min-width: 768px) {
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 }
 
