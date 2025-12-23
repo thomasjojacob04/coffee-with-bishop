@@ -134,22 +134,10 @@ onMounted(() => {
     </header>
 
     <main class="dashboard-main">
-      <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-content">
-            <div class="stat-info">
-              <p class="stat-label">Total Registrations</p>
-              <p class="stat-value">{{ registrations.length }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Actions -->
       <div class="actions-card">
         <div class="actions-content">
-          <h2 class="actions-title">Registered Participants</h2>
+          <h2 class="actions-title">Registered Participants ({{ registrations.length }})</h2>
           <div class="actions-buttons">
             <button
               @click="viewAllQuestions"
@@ -433,46 +421,6 @@ onMounted(() => {
   max-width: 80rem;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-}
-
-/* Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-}
-
-.stat-card {
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-}
-
-.stat-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.stat-label {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 0.5rem;
-}
-
-.stat-value {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #111827;
 }
 
 /* Actions Card */
