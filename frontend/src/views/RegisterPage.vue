@@ -10,7 +10,6 @@ const form = ref({
   phone: '',
   email: '',
   state: '',
-  zone: '',
   questions: ''
 });
 
@@ -22,7 +21,7 @@ const submitForm = async () => {
   error.value = '';
   
   // Basic validation
-  if (!form.value.fullName || !form.value.phone || !form.value.email || !form.value.state || !form.value.zone) {
+  if (!form.value.fullName || !form.value.phone || !form.value.email || !form.value.state || !form.value.questions) {
     error.value = 'Please fill in all required fields';
     return;
   }
@@ -138,32 +137,18 @@ const goBack = () => {
             />
           </div>
 
-          <!-- Zone -->
-          <div class="form-group">
-            <label for="zone" class="form-label">
-              Zone <span class="required-mark">*</span>
-            </label>
-            <input
-              id="zone"
-              v-model="form.zone"
-              type="text"
-              required
-              class="form-input"
-              placeholder="Enter your zone"
-            />
-          </div>
-
           <!-- Questions/Doubts -->
           <div class="form-group">
             <label for="questions" class="form-label">
-              Questions or Topics You'd Like to Discuss
+              Questions or Topics You'd Like to Discuss <span class="required-mark">*</span>
             </label>
             <textarea
               id="questions"
               v-model="form.questions"
               rows="4"
+              required
               class="form-textarea"
-              placeholder="Share any questions, doubts, or topics you'd like to discuss with the Bishop (optional)"
+              placeholder="Share any questions, doubts, or topics you'd like to discuss with the Bishop"
             ></textarea>
           </div>
 

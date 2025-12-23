@@ -22,14 +22,10 @@ const registrationSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  zone: {
+  questions: {
     type: String,
     required: true,
     trim: true
-  },
-  questions: {
-    type: String,
-    default: ''
   },
   registeredAt: {
     type: Date,
