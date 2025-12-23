@@ -83,13 +83,12 @@ const registrationsWithQuestions = computed(() => {
 });
 
 const exportToCSV = () => {
-  const headers = ['Full Name', 'Phone', 'Email', 'State', 'Zone', 'Questions', 'Registered At'];
+  const headers = ['Full Name', 'Phone', 'Email', 'State', 'Questions', 'Registered At'];
   const rows = registrations.value.map(reg => [
     reg.fullName,
     reg.phone,
     reg.email,
     reg.state,
-    reg.zone,
     reg.questions || 'N/A',
     formatDate(reg.registeredAt)
   ]);
@@ -214,7 +213,6 @@ onMounted(() => {
                 <th class="table-header">Phone</th>
                 <th class="table-header">Email</th>
                 <th class="table-header">State</th>
-                <th class="table-header">Zone</th>
                 <th class="table-header">Registered</th>
                 <th class="table-header">Actions</th>
               </tr>
@@ -236,9 +234,6 @@ onMounted(() => {
                 </td>
                 <td class="table-cell">
                   {{ registration.state }}
-                </td>
-                <td class="table-cell">
-                  {{ registration.zone }}
                 </td>
                 <td class="table-cell">
                   {{ formatDate(registration.registeredAt) }}
@@ -306,14 +301,9 @@ onMounted(() => {
             </div>
 
             <div class="detail-item">
-              <label class="detail-label">Zone</label>
-              <p class="detail-value">{{ selectedRegistration.zone }}</p>
-            </div>
-
-            <div class="detail-item">
               <label class="detail-label">Questions/Topics</label>
               <p class="detail-value">
-                {{ selectedRegistration.questions || 'No questions submitted' }}
+                {{ selectedRegistration.questions }}
               </p>
             </div>
 
@@ -367,7 +357,7 @@ onMounted(() => {
                 <div class="question-number">{{ index + 1 }}</div>
                 <div class="question-info">
                   <p class="question-name">{{ registration.fullName }}</p>
-                  <p class="question-meta">{{ registration.zone }}, {{ registration.state }}</p>
+                  <p class="question-meta">{{ registration.state }}</p>
                 </div>
               </div>
               <div class="question-content">
